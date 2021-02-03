@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
     "express-handlebars": "^5.2.0",
+    "firebase-admin": "^9.4.2",
     "imap": "^0.8.19",
     "json-web-token": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
