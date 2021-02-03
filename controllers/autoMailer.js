@@ -6,7 +6,6 @@ exports.postTestapp = (req, res) => {
 };
   
 
-  
 exports.sendEmail = (req, res) => {
     // console.log(req.body.fromEmail);
     // dertermine tenant : COVET, NEXTPHASE,
@@ -16,9 +15,9 @@ exports.sendEmail = (req, res) => {
     // BCC:
     // subject:
     // text:
-    const tenantId = req.body.tenantId;
-    config[tenantId].password;
-    config[tenantId].email;
+    // const tenantId = req.body.tenantId;
+    // config[tenantId].password;
+    // config[tenantId].email;
   
     const output = `<p> You have new email</p>
       <h3>Contact details
@@ -32,6 +31,7 @@ exports.sendEmail = (req, res) => {
       password
     } = req.body;
   
+
     var mail = nodemailer.createTransport({
       service: emailService,
       // host: host,
@@ -40,6 +40,12 @@ exports.sendEmail = (req, res) => {
       auth: {
         user: fromEmail,
         pass: password
+      },
+      headers: {
+        // 'User-Agent': 'my request',
+        'Authorization': `Bearer : ${req.body.accessToken}`,
+        'Content-Type': 'application/json',
+        // 'Accept': 'application/json'
       },
       tls: {
         ciphers: 'SSLv3'
@@ -67,10 +73,11 @@ exports.sendEmail = (req, res) => {
   
     mail.sendMail(mailOptions, function (error, info) {
       if (error) {
-        console.log(__dirname);
+       
         console.log(error);
         res.send(error)
       } else {
+        console.log(__dirname);
         res.send("Email Sent successfully")
         console.log('Email sent: ' + info.response);
       }
