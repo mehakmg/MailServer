@@ -1,4 +1,3 @@
-const jwt = require('json-web-token');
 var admin = require("firebase-admin");
 
 module.exports = (req, res, next) => {
@@ -15,9 +14,8 @@ module.exports = (req, res, next) => {
         // REACH OUT TO FIREBASE WITH ACCESS TOKEN FROM USER
         // check if access token is valid. if valid next(), else res.status(403).send({message: 'No Access Token, or access token invalid'})
         const idToken = req.headers.authorization.split(" ")[1];
-        
-        admin
-        .auth()
+        console.log(idToken);
+        admin.auth()
         .verifyIdToken(idToken)
         .then((decodedToken) => {
             const uid = decodedToken.uid;
