@@ -51,8 +51,7 @@ exports.sendEmail = (req, res) => {
         ciphers: 'SSLv3'
       }
     });
-    console.log(mail);
-  
+    
     var mailOptions = {
       from: req.body.fromEmail,
       to: req.body.toEmail,
