@@ -19,6 +19,7 @@
     "express-handlebars": "^5.2.0",
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.1",
+    "googleapis": "^67.0.0",
     "imap": "^0.8.19",
     "json-web-token": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
