@@ -11,22 +11,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "async": "^3.2.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dns": "^0.2.2",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
     "express-handlebars": "^5.2.0",
     "firebase-admin": "^9.4.2",
-    "firebase-functions": "^3.13.1",
+    "fs": "0.0.1-security",
+    "google-auth-library": "^7.0.2",
     "googleapis": "^67.0.0",
     "imap": "^0.8.19",
-    "json-web-token": "^3.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "imap-simple": "^5.0.0",
+    "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "node-cmd": "^4.0.0",
+    "node-localstorage": "^2.1.6",
     "nodemailer": "^6.4.17",
-    "nodemon": "^2.0.7",
     "smtp-server": "^3.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
