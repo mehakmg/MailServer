@@ -55,7 +55,7 @@
 var imaps = require('imap-simple');
 const _ = require('lodash');
 
-// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 exports.receiveEmails = (req, res) => {
     var config = {
         imap: {

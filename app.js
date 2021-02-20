@@ -20,6 +20,10 @@ app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Authorization, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   next();
 });
+
+app.get('/getData' , (req, res) => {
+  res.json({ username : 'mehak'})
+})
 // app.post('/upload/pic', (req, res) => {
 //   // 'profile_pic' is the name of our file input field in the HTML form
   
