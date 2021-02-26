@@ -54,13 +54,14 @@
 
 var imaps = require('imap-simple');
 const _ = require('lodash');
+const simpleParser = require('mailparser').simpleParser;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 exports.receiveEmails = (req, res) => {
     var config = {
         imap: {
-            user: 'mehakgarg147@gmail.com',
-            password: 'Mnzx@147',
+            user: '',
+            password: '',
             host: 'imap.gmail.com',
             port: 993,
             tls: true,
@@ -68,32 +69,32 @@ exports.receiveEmails = (req, res) => {
         }
     };
 
+    // res.setHeader('Content-Type' , 'text/html')
 
     imaps.connect(config).then(function (connection) {
- 
         return connection.openBox('INBOX').then(function () {
-            var searchCriteria = [
-                'UNSEEN'
-            ];
-     
+            var searchCriteria = ['1:5'];
             var fetchOptions = {
-                bodies: ['HEADER', 'TEXT'],
-                markSeen: false
+                bodies: ['HEADER', 'TEXT', ''],
             };
-     
-            return connection.search(searchCriteria, fetchOptions).then(function (results) {
-                var subjects = results.map(function (res) {
-                    return res.parts.filter(function (part) {
-                        return part.which === 'HEADER';
-                    })[0].body.subject[0];
+            return connection.search(searchCriteria, fetchOptions).then(function (messages) {
+                messages.forEach(function (item) {
+                    var all = _.find(item.parts, { "which": "" })
+                    var id = item.attributes.uid;
+                    var idHeader = "Imap-Id: "+id+"\r\n";
+                    simpleParser(idHeader+all.body, (err, mail) => {
+                        // res.setHeader('Content-Type' , 'text/html')
+                        // access to the whole mail object
+                        res.send("hiiiiiiiiiii");
+                        // console.log(mail.subject)
+                        // console.log(mail.body)
+                        // res.writeHead(200, {'Content-Type' : 'text/plain'});
+                      
+                        // res.end('ok')
+                    });
                 });
-     
-                console.log(subjects);
-                // =>
-                //   [ 'Hey Chad, long time no see!',
-                //     'Your amazon.com monthly statement',
-                //     'Hacker Newsletter Issue #445' ]
             });
         });
     });
+    
 }
