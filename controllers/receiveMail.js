@@ -77,31 +77,20 @@ exports.receiveEmails = async (req, res) => {
             var fetchOptions = {
                 bodies: ['HEADER', 'TEXT', ''],
             };
-            return  connection.search(searchCriteria, fetchOptions).then(function (messages) {
+            return  connection.search(searchCriteria, fetchOptions).then(async function (messages) {
                  const emailss = [];
-                 messages.forEach(async function (item) {
+                 for(const item of messages){
                     var all = _.find(item.parts, { "which": "" })
                     var id = item.attributes.uid;
                     var idHeader = "Imap-Id: "+id+"\r\n";
-                    // simpleParser(idHeader+all.body, (err, mail) => {
-                    //     // res.setHeader('Content-Type' , 'text/html')
-                    //     // access to the whole mail object
-                    //     // res.writeHead(200, {'Content-Type' : 'text/plain'});
-                    //   emailss.push(mail.subject);
-                    //     // res.end('ok')
-                    // });
-
                     await simpleParser(idHeader+all.body).then(( mail) => {
                         // res.setHeader('Content-Type' , 'text/html')
                         // access to the whole mail object
                         // res.writeHead(200, {'Content-Type' : 'text/plain'});
-                        console.log(mail.subject);
                       emailss.push(mail.subject);
                         // res.end('ok')
                     });
-                    
-                });
-                console.log("=================================")
+                 }
                 return emailss;
             });
         });
