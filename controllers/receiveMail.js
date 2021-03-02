@@ -6,8 +6,8 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 exports.receiveEmails = async (req, res) => {
     var config = {
         imap: {
-            user: 'dheerajgoyal38@gmail.com',//'mehakgarg147@gmail.com',
-            password: '',
+            user: 'mehakgarg147@gmail.com',//'dheerajgoyal38@gmail.com',//
+            password: 'Mnzx@147',
             host: 'imap.gmail.com',
             port: 993,
             tls: true,
@@ -16,8 +16,13 @@ exports.receiveEmails = async (req, res) => {
     };
 
     const result = await imaps.connect(config).then(function (connection) {
+        
+        connection.getBoxes().then(response => {
+            var r = response;
+            console.log(r);
+        });
         return connection.openBox('INBOX').then(function () {
-            var searchCriteria = ['ALL'];
+            var searchCriteria = ['1:100'];
             var fetchOptions = {
                 bodies: ['HEADER', 'TEXT', ''],
             };

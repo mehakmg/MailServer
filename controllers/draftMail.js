@@ -4,8 +4,8 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 exports.draftEmail = async (req, res) => {
     var config = {
         imap: {
-            user: 'dheerajgoyal38@gmail.com',//'mehakgarg147@gmail.com',
-            password: '',
+            user: 'mehakgarg147@gmail.com',//'dheerajgoyal38@gmail.com',//
+            password: 'Mnzx@147',
             host: 'imap.gmail.com',
             port: 993,
             tls: true,
@@ -13,13 +13,16 @@ exports.draftEmail = async (req, res) => {
         }
     };
 
+console.log(req.body);
      imaps.connect(config).then(function (connection) {
-        const message = `Content-Type: application/x-www-form-urlencoded
-      To: ${req.body.to}
-      Subject: ${req.body.subject}
+        //  console.log(connection);
+        const message = `
+      TO: js@gm.cm
+      SUBJECT: hiiii
        
       ${req.body.text}
       `;
+    //   console.log(message.toString());
        connection.append(message.toString(), {mailbox: '[Gmail]/Drafts', flags: '\\Draft'});
       });
 
