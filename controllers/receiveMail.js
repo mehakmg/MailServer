@@ -72,6 +72,10 @@ exports.receiveEmails = async (req, res) => {
     // res.setHeader('Content-Type' , 'text/html')
 
     const result = await imaps.connect(config).then(function (connection) {
+        connection.getBoxes().then(response => {
+            var r = response;
+            console.log(r);
+        });
         return connection.openBox('INBOX').then(function () {
             var searchCriteria = ['1:5'];
             var fetchOptions = {
