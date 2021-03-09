@@ -50,7 +50,7 @@ exports.uploadFile = (req,res) => {
       clientId : client_id,
       clientSecret: client_secret,
       user: fromEmail,
-      refreshToken : '1//04ppsezp1YcbNCgYIARAAGAQSNwF-L9IrUANSFfH4lITecyXBEWi17yy40A8IACU1al90A3ScF3RBHEkfYy-m4mIs7rYIfne4Wek'//'1//04is8mzs5_zi0CgYIARAAGAQSNwF-L9IrDf18lQegasklpXXlU53aDxUYpqyw0EhDcZCp5xZZVB2H6fPwGzCOvK9pVgRsPkYXwWg'
+      refreshToken : ''
     },
     headers: {
       'Content-Type': 'application/json',

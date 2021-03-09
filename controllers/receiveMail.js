@@ -7,7 +7,7 @@ exports.receiveEmails = async (req, res) => {
     var config = {
         imap: {
             user: 'mehakgarg147@gmail.com',//'dheerajgoyal38@gmail.com',//
-            password: 'Mnzx@147',
+            password: '',
             host: 'imap.gmail.com',
             port: 993,
             tls: true,
